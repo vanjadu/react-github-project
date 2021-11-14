@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import './styles/Main.scss';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home/Home';
+import Repositories from './pages/Repositories/Repositories';
 
 function App() {
+  const [repos, setRepos] = useState(null);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Routes>
+          <Route exact path="/" element={<Home setRepos={setRepos} />} />
+          <Route
+            exact
+            path="/repositories"
+            element={<Repositories repos={repos} />}
+          />
+        </Routes>
+      </Router>
     </div>
   );
 }
