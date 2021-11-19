@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
 
 export default function Repositories({ repos }) {
-  const [theRepo, setTheRepo] = useState([]);
+  const [theRepos, setTheRepos] = useState([]);
 
   useEffect(() => {
     getRepo();
@@ -17,7 +17,7 @@ export default function Repositories({ repos }) {
       const data = await response.json();
 
       const repoData = JSON.parse(JSON.stringify(data));
-      setTheRepo(repoData);
+      setTheRepos(repoData);
     }
   }, [repos]);
 
@@ -27,9 +27,9 @@ export default function Repositories({ repos }) {
         <FaArrowLeft className="repos__back-icon" />
         Back to home
       </Link>
-      {theRepo && (
+      {theRepos && (
         <div className="repos__list">
-          {theRepo.map((repo, id) => (
+          {theRepos.map((repo, id) => (
             <div className="repos__single" key={id}>
               <p className="repos__title">{repo.name}</p>
               <div className="repos__stats">
